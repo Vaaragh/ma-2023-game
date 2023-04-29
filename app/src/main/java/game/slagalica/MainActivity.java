@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }));
 
+        Button regBtn = (Button) findViewById(R.id.register_btn);
+        regBtn.setOnClickListener((view -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        }));
+
     }
 
 }

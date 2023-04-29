@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_profile" />
     <item
@@ -11,8 +11,13 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_ranks"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_ranking" />
+
+    <item
+        android:id="@+id/navigation_friends"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Friends"/>
 
 </menu>

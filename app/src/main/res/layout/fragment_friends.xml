@@ -1,14 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".userFragments.FriendsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Friends fragment" />
+    <ImageView
+        android:id="@+id/picture_1"
+        android:layout_width="@dimen/picture"
+        android:layout_marginTop="@dimen/header_margin"
+        android:layout_marginStart="@dimen/header_margin"
+        android:layout_height="@dimen/picture"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/user_1"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="User 1"
+        app:layout_constraintStart_toEndOf="@+id/picture_1"
+        app:layout_constraintTop_toTopOf="@+id/picture_1" />
+
+    <TextView
+        android:id="@+id/rank_1"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="#1"
+        app:layout_constraintStart_toEndOf="@+id/user_1"
+        app:layout_constraintTop_toTopOf="@+id/picture_1" />
+
+    <TextView
+        android:id="@+id/score_1"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="97"
+        app:layout_constraintStart_toEndOf="@+id/rank_1"
+        app:layout_constraintTop_toTopOf="@+id/picture_1" />
+
+    <ImageView
+        android:id="@+id/picture_2"
+        android:layout_width="@dimen/picture"
+        android:layout_marginTop="@dimen/header_margin"
+        android:layout_marginStart="@dimen/header_margin"
+        android:layout_height="@dimen/picture"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture_1" />
+
+    <TextView
+        android:id="@+id/user_2"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="User2"
+        app:layout_constraintStart_toEndOf="@+id/picture_2"
+        app:layout_constraintTop_toTopOf="@+id/picture_2" />
+
+    <TextView
+        android:id="@+id/rank_2"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="#2"
+        app:layout_constraintStart_toEndOf="@+id/user_2"
+        app:layout_constraintTop_toTopOf="@+id/picture_2" />
+
+    <TextView
+        android:id="@+id/score_2"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="41"
+        app:layout_constraintStart_toEndOf="@+id/rank_2"
+        app:layout_constraintTop_toTopOf="@+id/picture_2" />
+
+    <ImageView
+        android:id="@+id/picture_3"
+        android:layout_width="@dimen/picture"
+        android:layout_marginTop="@dimen/header_margin"
+        android:layout_marginStart="@dimen/header_margin"
+        android:layout_height="@dimen/picture"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture_2" />
+
+    <TextView
+        android:id="@+id/user_3"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="User3"
+        app:layout_constraintStart_toEndOf="@+id/picture_3"
+        app:layout_constraintTop_toTopOf="@+id/picture_3" />
+
+    <TextView
+        android:id="@+id/rank_3"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="#2"
+        app:layout_constraintStart_toEndOf="@+id/user_3"
+        app:layout_constraintTop_toTopOf="@+id/picture_3" />
+
+    <TextView
+        android:id="@+id/score_3"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="56"
+        app:layout_constraintStart_toEndOf="@+id/rank_3"
+        app:layout_constraintTop_toTopOf="@+id/picture_3" />
+
+    <ImageView
+        android:id="@+id/picture_4"
+        android:layout_width="@dimen/picture"
+        android:layout_marginTop="@dimen/header_margin"
+        android:layout_marginStart="@dimen/header_margin"
+        android:layout_height="@dimen/picture"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture_3" />
+
+    <TextView
+        android:id="@+id/user_4"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="User4"
+        app:layout_constraintStart_toEndOf="@+id/picture_4"
+        app:layout_constraintTop_toTopOf="@+id/picture_4" />
+
+    <TextView
+        android:id="@+id/rank_4"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="#4"
+        app:layout_constraintStart_toEndOf="@+id/user_4"
+        app:layout_constraintTop_toTopOf="@+id/picture_4" />
+
+    <TextView
+        android:id="@+id/score_4"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="73"
+        app:layout_constraintStart_toEndOf="@+id/rank_4"
+        app:layout_constraintTop_toTopOf="@+id/picture_4" />
+
+    <ImageView
+        android:id="@+id/picture_5"
+        android:layout_width="@dimen/picture"
+        android:layout_marginTop="@dimen/header_margin"
+        android:layout_marginStart="@dimen/header_margin"
+        android:layout_height="@dimen/picture"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture_4" />
+
+    <TextView
+        android:id="@+id/user_5"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="User5"
+        app:layout_constraintStart_toEndOf="@+id/picture_5"
+        app:layout_constraintTop_toTopOf="@+id/picture_5" />
+
+    <TextView
+        android:id="@+id/rank_5"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="#5"
+        app:layout_constraintStart_toEndOf="@+id/user_5"
+        app:layout_constraintTop_toTopOf="@+id/picture_5" />
+
+    <TextView
+        android:id="@+id/score_5"
+        android:layout_width="@dimen/rt_width"
+        android:layout_height="@dimen/rt_height"
+        android:layout_marginStart="@dimen/tight_margin"
+        android:layout_marginTop="@dimen/rt_v_offset"
+        android:text="13"
+        app:layout_constraintStart_toEndOf="@+id/rank_5"
+        app:layout_constraintTop_toTopOf="@+id/picture_5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

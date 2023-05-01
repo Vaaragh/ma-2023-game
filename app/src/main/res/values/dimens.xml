@@ -6,4 +6,13 @@
     <dimen name="tight_margin">20dp</dimen>
     <dimen name="tight_margin_btn">15dp</dimen>
     <dimen name="table_field">100dp</dimen>
+    <dimen name="text_button_width">140dp</dimen>
+    <dimen name="text_button_height">40dp</dimen>
+
+    <dimen name="association_h_offset">100dp</dimen>
+    <dimen name="association_v_offset">10dp</dimen>
+    <dimen name="touch_target">48dp</dimen>
+    <dimen name="a_s_w">120dp</dimen>
+    <dimen name="a_s_h">30dp</dimen>
+
 </resources>

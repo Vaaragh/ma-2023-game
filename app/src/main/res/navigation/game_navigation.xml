@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_navigation"
+    app:startDestination="@+id/navigation_question">
+
+
+<fragment
+        android:id="@+id/navigation_question"
+        android:name="game.slagalica.gameFragments.QuestionFragment"
+        android:label="Question"
+        tools:layout="@layout/fragment_question"/>
+
+    <fragment
+        android:id="@+id/navigation_conect"
+        android:name="game.slagalica.gameFragments.ConectFragment"
+        android:label="Connect"
+        android:layout="@layout/fragment_conect"/>
+
+    <fragment
+        android:id="@+id/navigation_association"
+        android:name="game.slagalica.gameFragments.AssociationFragment"
+        android:label="Association"
+        android:layout="@layout/fragment_association"/>
+
+
+</navigation>

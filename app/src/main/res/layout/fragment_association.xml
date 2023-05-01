@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_association"
+    android:tag="game_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gameFragments.AssociationFragment">
+
+    <EditText
+        android:id="@+id/win_answer"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/touch_target"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Answer"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+<!--TOP LEFT-->
+
+    <EditText
+        android:id="@+id/column_1_answer"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/touch_target"
+        android:layout_marginEnd="@dimen/association_h_offset"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Column 1"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/win_answer"
+        app:layout_constraintEnd_toEndOf="@+id/win_answer" />
+
+    <TextView
+        android:id="@+id/column_1_4"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 4"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintBottom_toTopOf="@+id/column_1_answer"
+        app:layout_constraintStart_toStartOf="@+id/column_1_answer" />
+
+    <TextView
+        android:id="@+id/column_1_3"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 3"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintBottom_toTopOf="@+id/column_1_4"
+        app:layout_constraintStart_toStartOf="@+id/column_1_4" />
+
+    <TextView
+        android:id="@+id/column_1_2"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 2"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintBottom_toTopOf="@+id/column_1_3"
+        app:layout_constraintStart_toStartOf="@+id/column_1_3" />
+
+    <TextView
+        android:id="@+id/column_1_1"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 1"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/reveal"
+        app:layout_constraintBottom_toTopOf="@+id/column_1_2"
+        app:layout_constraintStart_toStartOf="@+id/column_1_2" />
+
+<!--TOP RIGHT-->
+
+    <EditText
+        android:id="@+id/column_2_answer"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/touch_target"
+        android:layout_marginStart="@dimen/association_h_offset"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Column 2"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/win_answer"
+        app:layout_constraintStart_toStartOf="@+id/win_answer" />
+
+    <TextView
+        android:id="@+id/column_2_4"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 4"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintBottom_toTopOf="@+id/column_2_answer"
+        app:layout_constraintStart_toStartOf="@+id/column_2_answer" />
+
+    <TextView
+        android:id="@+id/column_2_3"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 3"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintBottom_toTopOf="@+id/column_2_4"
+        app:layout_constraintStart_toStartOf="@+id/column_2_4" />
+
+    <TextView
+        android:id="@+id/column_2_2"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 2"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintBottom_toTopOf="@+id/column_2_3"
+        app:layout_constraintStart_toStartOf="@+id/column_2_3" />
+
+    <TextView
+        android:id="@+id/column_2_1"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginBottom="@dimen/association_v_offset"
+        android:text="Term 1"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/reveal"
+        app:layout_constraintBottom_toTopOf="@+id/column_2_2"
+        app:layout_constraintStart_toStartOf="@+id/column_2_2" />
+
+<!--BOTTOM LEFT-->
+
+    <EditText
+        android:id="@+id/column_3_answer"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/touch_target"
+        android:layout_marginEnd="@dimen/association_h_offset"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Column 3"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/win_answer"
+        app:layout_constraintEnd_toEndOf="@+id/win_answer" />
+
+    <TextView
+        android:id="@+id/column_3_4"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 4"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintTop_toBottomOf="@+id/column_3_answer"
+        app:layout_constraintStart_toStartOf="@+id/column_3_answer" />
+
+    <TextView
+        android:id="@+id/column_3_3"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 3"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintTop_toBottomOf="@+id/column_3_4"
+        app:layout_constraintStart_toStartOf="@+id/column_3_4" />
+
+    <TextView
+        android:id="@+id/column_3_2"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 2"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintTop_toBottomOf="@+id/column_3_3"
+        app:layout_constraintStart_toStartOf="@+id/column_3_3" />
+
+    <TextView
+        android:id="@+id/column_3_1"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 1"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/reveal"
+        app:layout_constraintTop_toBottomOf="@+id/column_3_2"
+        app:layout_constraintStart_toStartOf="@+id/column_3_2" />
+
+<!--BOTTOM RIGHT-->
+
+    <EditText
+        android:id="@+id/column_4_answer"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/touch_target"
+        android:layout_marginStart="@dimen/association_h_offset"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Column 3"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/win_answer"
+        app:layout_constraintStart_toStartOf="@+id/win_answer" />
+
+    <TextView
+        android:id="@+id/column_4_4"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 4"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintTop_toBottomOf="@+id/column_4_answer"
+        app:layout_constraintStart_toStartOf="@+id/column_4_answer" />
+
+    <TextView
+        android:id="@+id/column_4_3"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 3"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintTop_toBottomOf="@+id/column_4_4"
+        app:layout_constraintStart_toStartOf="@+id/column_4_4" />
+
+    <TextView
+        android:id="@+id/column_4_2"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 2"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/spoiler"
+        app:layout_constraintTop_toBottomOf="@+id/column_4_3"
+        app:layout_constraintStart_toStartOf="@+id/column_4_3" />
+
+    <TextView
+        android:id="@+id/column_4_1"
+        android:layout_width="@dimen/a_s_w"
+        android:layout_height="@dimen/a_s_h"
+        android:layout_marginTop="@dimen/association_v_offset"
+        android:text="Term 1"
+        android:gravity="center"
+        android:textColor="@color/spoiler"
+        android:background="@color/reveal"
+        app:layout_constraintTop_toBottomOf="@+id/column_4_2"
+        app:layout_constraintStart_toStartOf="@+id/column_4_2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

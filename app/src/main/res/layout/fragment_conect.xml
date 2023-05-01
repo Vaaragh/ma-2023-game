@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_conect"
+    android:tag="game_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gameFragments.ConectFragment">
+
+    <TextView
+        android:id="@+id/term_1"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:layout_marginTop="100dp"
+        android:text="Term 1"
+        android:background="#CDB7EC"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/answer_1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/answer_1"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:text="Answer 1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/term_1"
+        app:layout_constraintTop_toTopOf="@+id/term_1" />
+
+    <TextView
+        android:id="@+id/term_2"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:layout_marginTop="@dimen/tight_margin_btn"
+        android:text="Term 2"
+        android:background="#CDB7EC"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/answer_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer_1" />
+
+    <Button
+        android:id="@+id/answer_2"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:text="Answer 2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/term_2"
+        app:layout_constraintTop_toTopOf="@+id/term_2" />
+
+    <TextView
+        android:id="@+id/term_3"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:layout_marginTop="@dimen/tight_margin_btn"
+        android:text="Term 3"
+        android:background="#CDB7EC"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/answer_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer_2" />
+
+    <Button
+        android:id="@+id/answer_3"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:text="Answer 3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/term_3"
+        app:layout_constraintTop_toTopOf="@+id/term_3" />
+
+    <TextView
+        android:id="@+id/term_4"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:layout_marginTop="@dimen/tight_margin_btn"
+        android:text="Term 4"
+        android:background="#CDB7EC"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/answer_4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer_3" />
+
+    <Button
+        android:id="@+id/answer_4"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:text="Answer 4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/term_4"
+        app:layout_constraintTop_toTopOf="@+id/term_4" />
+
+    <TextView
+        android:id="@+id/term_5"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:layout_marginTop="@dimen/tight_margin_btn"
+        android:text="Term 5"
+        android:background="#CDB7EC"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/answer_5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer_4" />
+
+    <Button
+        android:id="@+id/answer_5"
+        android:layout_width="@dimen/text_button_width"
+        android:layout_height="@dimen/text_button_height"
+        android:text="Answer 5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/term_5"
+        app:layout_constraintTop_toTopOf="@+id/term_5" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

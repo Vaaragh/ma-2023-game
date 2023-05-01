@@ -16,4 +16,19 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Association"/>
 
+    <item
+        android:id="@+id/navigation_mastermind"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Mastemind"/>
+
+    <item
+        android:id="@+id/navigation_steps"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Steps"/>
+
+    <item
+        android:id="@+id/navigation_my_number"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="My Number"/>
+
     </menu>

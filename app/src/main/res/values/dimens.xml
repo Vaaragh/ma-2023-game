@@ -21,4 +21,7 @@
     <dimen name="a_s_w">120dp</dimen>
     <dimen name="a_s_h">30dp</dimen>
 
+    <dimen name="temp_nav">48dp</dimen>
+    <dimen name="temp_nav_w">50dp</dimen>
+
 </resources>

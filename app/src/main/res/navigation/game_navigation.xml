@@ -6,7 +6,7 @@
     app:startDestination="@+id/navigation_question">
 
 
-<fragment
+    <fragment
         android:id="@+id/navigation_question"
         android:name="game.slagalica.gameFragments.QuestionFragment"
         android:label="Question"
@@ -23,6 +23,24 @@
         android:name="game.slagalica.gameFragments.AssociationFragment"
         android:label="Association"
         android:layout="@layout/fragment_association"/>
+
+    <fragment
+        android:id="@+id/navigation_mastermind"
+        android:name="game.slagalica.gameFragments.MastermindFragment"
+        android:label="Mastermind"
+        android:layout="@layout/fragment_mastermind"/>
+
+    <fragment
+        android:id="@+id/navigation_steps"
+        android:name="game.slagalica.gameFragments.StepsFragment"
+        android:label="Steps"
+        android:layout="@layout/fragment_steps"/>
+
+    <fragment
+        android:id="@+id/navigation_my_number"
+        android:name="game.slagalica.gameFragments.MyNumberFragment"
+        android:label="My Number"
+        android:layout="@layout/fragment_my_number"/>
 
 
 </navigation>

@@ -1,21 +1,30 @@
 package game.slagalica;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import java.util.ArrayList;
+import java.util.List;
 
 import game.slagalica.databinding.ActivityGameBinding;
+import game.slagalica.gameFragments.AssociationFragment;
+import game.slagalica.gameFragments.ConectFragment;
+import game.slagalica.gameFragments.MastermindFragment;
+import game.slagalica.gameFragments.MyNumberFragment;
+import game.slagalica.gameFragments.QuestionFragment;
+import game.slagalica.gameFragments.StepsFragment;
 
 public class GameActivity extends AppCompatActivity {
 
-
+    private int counter=0;
     private ActivityGameBinding binding;
+    private List<Fragment> fList= new ArrayList<Fragment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +35,30 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.game_nav_view);
+        FragmentTransaction ft0 = getSupportFragmentManager().beginTransaction();
+        ft0.replace(R.id.game_host_fragment, new QuestionFragment());
+        ft0.commit();
 
-        AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(
-                R.id.navigation_question, R.id.navigation_conect, R.id.navigation_association).build();
+        fList.add(new ConectFragment());
+        fList.add(new AssociationFragment());
+        fList.add(new MastermindFragment());
+        fList.add(new StepsFragment());
+        fList.add(new MyNumberFragment());
 
-        NavController navCont = Navigation.findNavController(this, R.id.game_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navCont, appBarConfig);
-        NavigationUI.setupWithNavController(binding.gameNavView, navCont);
+
+        Button game2 = findViewById(R.id.switch_button);
+        game2.setOnClickListener(view -> {
+            if (counter != 5) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.game_host_fragment, fList.get(counter));
+                ft.commit();
+                counter += 1;
+            } else {
+                counter = 0;
+                Intent intent = new Intent(GameActivity.this, UserHomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

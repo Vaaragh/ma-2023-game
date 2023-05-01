@@ -4,5 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="tight_margin">20dp</dimen>
+    <dimen name="tight_margin_btn">15dp</dimen>
     <dimen name="table_field">100dp</dimen>
 </resources>

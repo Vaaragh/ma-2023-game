@@ -34,7 +34,7 @@
         android:layout_marginBottom="10dp"
         android:layout_width="@dimen/temp_nav_w"
         android:layout_height="@dimen/temp_nav"
-        android:text="next"
+        android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

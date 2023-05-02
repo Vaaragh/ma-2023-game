@@ -38,6 +38,7 @@
 
     <dimen name="step_width">300dp</dimen>
     <dimen name="step_height">40dp</dimen>
+    <dimen name="step_margin">10dp</dimen>
 
 
     <dimen name="main_number">75dp</dimen>

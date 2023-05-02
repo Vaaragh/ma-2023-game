@@ -275,4 +275,12 @@
         app:layout_constraintTop_toBottomOf="@+id/column_4_2"
         app:layout_constraintStart_toStartOf="@+id/column_4_2" />
 
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintStart_toEndOf="@+id/win_answer"
+        app:layout_constraintTop_toTopOf="@+id/win_answer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

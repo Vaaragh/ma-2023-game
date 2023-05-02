@@ -29,4 +29,10 @@
         android:label="Friends"
         tools:layout="@layout/fragment_friends"/>
 
+    <fragment
+        android:id="@+id/navigation_notification"
+        android:name="game.slagalica.userFragments.NotificationFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notification"/>
+
 </navigation>

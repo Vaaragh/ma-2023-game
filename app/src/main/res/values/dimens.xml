@@ -39,4 +39,10 @@
     <dimen name="step_width">300dp</dimen>
     <dimen name="step_height">40dp</dimen>
 
+
+    <dimen name="main_number">75dp</dimen>
+    <dimen name="calc_number">48dp</dimen>
+    <dimen name="exp_width">300dp</dimen>
+    <dimen name="exp_height">40dp</dimen>
+
 </resources>

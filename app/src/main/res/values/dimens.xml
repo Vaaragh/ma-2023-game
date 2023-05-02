@@ -15,6 +15,7 @@
     <dimen name="rt_height">20dp</dimen>
     <dimen name="rt_v_offset">25dp</dimen>
 
+
     <dimen name="association_h_offset">100dp</dimen>
     <dimen name="association_v_offset">10dp</dimen>
     <dimen name="touch_target">48dp</dimen>
@@ -28,5 +29,11 @@
     <dimen name="notif_h">30dp</dimen>
     <dimen name="notif_text">20dp</dimen>
     <dimen name="notif_margin">10dp</dimen>
+
+    <dimen name="mmv_offset">10dp</dimen>
+    <dimen name="mmv_header">15dp</dimen>
+    <dimen name="mm_icon">30dp</dimen>
+    <dimen name="mm_pic">40dp</dimen>
+    <dimen name="mm_symbol">48dp</dimen>
 
 </resources>

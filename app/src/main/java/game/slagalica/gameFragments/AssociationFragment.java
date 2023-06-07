@@ -49,6 +49,8 @@ public class AssociationFragment extends Fragment {
 
     private SubmitCallback submitCallback;
 
+    private boolean finished = false;
+
 
 
     public static AssociationFragment newInstance(){
@@ -56,7 +58,7 @@ public class AssociationFragment extends Fragment {
     }
 
     public interface SubmitCallback {
-        void onAnswerSubmit(int points);
+        void onAnswerSubmitAssociation(int points, boolean finish);
     }
     public void setSubmitCallback(SubmitCallback callback) {
         submitCallback = callback;
@@ -154,6 +156,7 @@ public class AssociationFragment extends Fragment {
                             fillArray(columnD,column4);
                             fillEdits(winInputs,winList);
                             this.points +=7;
+                            this.finished = true;
                             break;
                     }
                     submitAnswer();
@@ -280,7 +283,7 @@ public class AssociationFragment extends Fragment {
 
     public void submitAnswer(){
         if (submitCallback != null){
-            submitCallback.onAnswerSubmit(this.points);
+            submitCallback.onAnswerSubmitAssociation(this.points,this.finished);
         }
     }
 

@@ -21,7 +21,7 @@ import game.slagalica.model.single.Association;
 import game.slagalica.model.single.Game;
 import game.slagalica.utils.FragmentSwitch;
 
-public class GameActivity extends AppCompatActivity implements PointsFragment.TimerCallBack {
+public class GameActivity extends AppCompatActivity implements PointsFragment.TimerCallBack, AssociationFragment.SubmitCallback {
 
     private Map<Integer, GamePair> pairMap = new HashMap<>();
     private int currentActiveGame = 0;
@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     }
 
     private void initGamesList(){
-        Association association = new Association(2,30, 0, 1,1);
+        Association association = new Association(1,30, 0, 1,1);
         AssociationFragment fragmentAssociation = new AssociationFragment();
         GamePair associationPair = new GamePair(association, fragmentAssociation);
         pairMap.put(0, associationPair);
@@ -52,6 +52,7 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     }
 
     private void initGameFragment(){
+        ((AssociationFragment) pairMap.get(currentActiveGame).getFragment()).setSubmitCallback(this);
         FragmentSwitch.to(pairMap.get(currentActiveGame).getFragment(), this, false, R.id.game_host_fragment);
     }
 
@@ -63,7 +64,6 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
 
     @Override
     public void onTimeTick(int secondsLeft) {
-        Log.d("Neda", secondsLeft + "");
     }
 
 
@@ -87,9 +87,10 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     }
 
 
+    @Override
+    public void onAnswerSubmit(int points) {
+        PointsFragment pf = (PointsFragment) getSupportFragmentManager().findFragmentById(R.id.game_points_fragment);
+        pf.updatePlayerPoints("guest", points);
 
-
-
-
-
+    }
 }

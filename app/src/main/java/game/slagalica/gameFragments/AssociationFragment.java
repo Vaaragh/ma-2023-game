@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +43,24 @@ public class AssociationFragment extends Fragment {
     private EditText a,b,c,d,win;
     private Button subBtn;
 
+    private int points;
+
+    private List<Boolean> columFlags;
+
+    private SubmitCallback submitCallback;
+
+
 
     public static AssociationFragment newInstance(){
         return new AssociationFragment();
     }
 
+    public interface SubmitCallback {
+        void onAnswerSubmit(int points);
+    }
+    public void setSubmitCallback(SubmitCallback callback) {
+        submitCallback = callback;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -87,6 +101,11 @@ public class AssociationFragment extends Fragment {
     }
 
     private void initEditTexts(){
+        columFlags = new ArrayList<>();
+        columFlags.add(false);
+        columFlags.add(false);
+        columFlags.add(false);
+        columFlags.add(false);
         a = view.findViewById(R.id.column_1_answer);
         b = view.findViewById(R.id.column_2_answer);
         c = view.findViewById(R.id.column_3_answer);
@@ -101,20 +120,32 @@ public class AssociationFragment extends Fragment {
             int points = 0;
             for (int i=0;i<winInputs.size();i++){
                 if (winInputs.get(i).getText().toString().equals(winList.get(i))){
-                    winInputs.get(i).setText(winList.get(i));
-                    disableEdit(winInputs.get(i));
+                    revealEdit(winInputs.get(i),winList.get(i));
                     switch(i){
                         case 0:
+                            if (!columFlags.get(i)){
                             fillArray(columnA,column1);
+                            columFlags.set(i, true);
+                            this.points +=2;                            }
                             break;
                         case 1:
-                            fillArray(columnB,column2);
+                            if (!columFlags.get(i)){
+                                fillArray(columnB,column2);
+                                columFlags.set(i, true);
+                                this.points +=2;                            }
                             break;
                         case 2:
-                            fillArray(columnC,column3);
+                            if (!columFlags.get(i)){
+                                fillArray(columnC,column3);
+                                columFlags.set(i, true);
+                                this.points +=2;                            }
                             break;
                         case 3:
-                            fillArray(columnD,column4);
+                            if (!columFlags.get(i)){
+                                fillArray(columnD,column4);
+                                columFlags.set(i, true);
+                                this.points +=2;
+                            }
                             break;
                         case 4:
                             fillArray(columnA,column1);
@@ -122,9 +153,11 @@ public class AssociationFragment extends Fragment {
                             fillArray(columnC,column3);
                             fillArray(columnD,column4);
                             fillEdits(winInputs,winList);
-                            disableAll(winInputs);
+                            this.points +=7;
                             break;
                     }
+                    submitAnswer();
+                    this.points = 0;
                 } else {
                     reveal(winInputs.get(i),"");
                 }
@@ -180,18 +213,38 @@ public class AssociationFragment extends Fragment {
             });
         }
     }
+
+    private void assignFieldPoint(TextView te){
+        if (te.getText().toString().equals("")){
+        points++;
+        }
+    }
+
     private void fillArray(List<TextView> t, List<String> s){
         for (int i=0;i<t.size();i++){
-           reveal(t.get(i),s.get(i));
+            assignFieldPoint(t.get(i));
+            reveal(t.get(i),s.get(i));
         }
     }
     private void reveal(TextView te, String se){
         te.setText(se);
     }
+
+    private void assignEditPoint(EditText et){
+        if (et.getText().toString().equals("")){
+            points += 2;
+        }
+    }
+
+    private void revealEdit(EditText et, String se){
+        assignEditPoint(et);
+        et.setText(se);
+        disableEdit(et);
+    }
+
     private void fillEdits(List<EditText> t, List<String> s){
         for (int i=0;i<t.size();i++){
-            t.get(i).setText(s.get(i));
-            disableEdit(t.get(i));
+            revealEdit(t.get(i), s.get(i));
         }
     }
     private void disableEdit(EditText t){
@@ -223,6 +276,12 @@ public class AssociationFragment extends Fragment {
         fillArray(columnD,empty);
         empty.add(" ");
         fillEdits(winInputs,empty);
+    }
+
+    public void submitAnswer(){
+        if (submitCallback != null){
+            submitCallback.onAnswerSubmit(this.points);
+        }
     }
 
 }

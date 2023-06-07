@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +23,7 @@ public class PointsFragment extends Fragment {
     private TimerCallBack timerCallBack;
     private TextView timeLeft;
 
-    private PlayerInfo leftPLayer = new PlayerInfo("guest", 0);
-
+    private PlayerInfo leftPLayer;
     private TextView leftPoints;
 
     public interface TimerCallBack{
@@ -38,12 +38,20 @@ public class PointsFragment extends Fragment {
         return fragment;
     }
 
+    public void updatePlayerPoints(String id, int points){
+        leftPLayer.setPoints(leftPLayer.getPoints() + points);
+        Log.d("peoni", String.valueOf(leftPLayer.getPoints()));
+        leftPoints.setText(String.valueOf(leftPLayer.getPoints()));
+
+    }
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         view = inflater.inflate(R.layout.fragment_points, container, false);
-
+        initPLayers();
+        initPoints();
         return view;
     }
 
@@ -56,7 +64,16 @@ public class PointsFragment extends Fragment {
 
     private void initPoints(){
         leftPoints = view.findViewById(R.id.player_1_points);
-        leftPoints.setText(leftPLayer.getPoints());
+        leftPoints.setText(String.valueOf(leftPLayer.getPoints()));
+
+        TextView rightPoints = view.findViewById(R.id.player_2_points);
+        rightPoints.setText("");
+        TextView rightPlay = view.findViewById(R.id.player_2);
+        rightPlay.setText("");
+    }
+
+    private void initPLayers(){
+        leftPLayer = new PlayerInfo("guest", 0);
     }
 
 

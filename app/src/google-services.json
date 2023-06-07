@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1045352774037",
+    "project_id": "slagalica-0",
+    "storage_bucket": "slagalica-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045352774037:android:adecd474e04e46b1c75e9c",
+        "android_client_info": {
+          "package_name": "game.slagalica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045352774037-g9o9t1qv3dv6uimnovk7464pir8q36ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLbl_4o3p238RbJAF1GOXUi2nErHtCVVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045352774037-g9o9t1qv3dv6uimnovk7464pir8q36ts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

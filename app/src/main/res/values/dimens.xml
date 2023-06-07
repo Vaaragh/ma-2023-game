@@ -9,6 +9,8 @@
     <dimen name="table_field">100dp</dimen>
     <dimen name="text_button_width">140dp</dimen>
     <dimen name="text_button_height">40dp</dimen>
+    <dimen name="mar_10dp">10dp</dimen>
+
 
     <dimen name="picture">75dp</dimen>
     <dimen name="rt_width">60dp</dimen>

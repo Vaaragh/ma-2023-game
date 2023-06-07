@@ -1,65 +1,95 @@
 package game.slagalica;
 
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.widget.Button;
+import android.util.Log;
+
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import game.slagalica.databinding.ActivityGameBinding;
+import java.util.HashMap;
+
+import java.util.Map;
+
 import game.slagalica.gameFragments.AssociationFragment;
-import game.slagalica.gameFragments.ConectFragment;
-import game.slagalica.gameFragments.MastermindFragment;
-import game.slagalica.gameFragments.MyNumberFragment;
-import game.slagalica.gameFragments.QuestionFragment;
-import game.slagalica.gameFragments.StepsFragment;
 
-public class GameActivity extends AppCompatActivity {
+import game.slagalica.gameFragments.PointsFragment;
 
-    private int counter=0;
-    private ActivityGameBinding binding;
-    private List<Fragment> fList= new ArrayList<Fragment>();
+import game.slagalica.model.aggregate.GamePair;
+import game.slagalica.model.single.Association;
+import game.slagalica.model.single.Game;
+import game.slagalica.utils.FragmentSwitch;
+
+public class GameActivity extends AppCompatActivity implements PointsFragment.TimerCallBack {
+
+    private Map<Integer, GamePair> pairMap = new HashMap<>();
+    private int currentActiveGame = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-
-        binding = ActivityGameBinding.inflate(getLayoutInflater());
-
-        setContentView(binding.getRoot());
-
-        FragmentTransaction ft0 = getSupportFragmentManager().beginTransaction();
-        ft0.replace(R.id.game_host_fragment, new QuestionFragment());
-        ft0.commit();
-
-        fList.add(new ConectFragment());
-        fList.add(new AssociationFragment());
-        fList.add(new MastermindFragment());
-        fList.add(new StepsFragment());
-        fList.add(new MyNumberFragment());
+        setContentView(R.layout.activity_game);
 
 
-        Button game2 = findViewById(R.id.switch_button);
-        game2.setOnClickListener(view -> {
-            if (counter != 5) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.game_host_fragment, fList.get(counter));
-                ft.commit();
-                counter += 1;
-            } else {
-                counter = 0;
-                Intent intent = new Intent(GameActivity.this, UserHomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        initGamesList();
+        initFragments();
 
     }
+
+    private void initGamesList(){
+        Association association = new Association(2,30, 0, 1,1);
+        AssociationFragment fragmentAssociation = new AssociationFragment();
+        GamePair associationPair = new GamePair(association, fragmentAssociation);
+        pairMap.put(0, associationPair);
+    }
+
+    public void initFragments(){
+        initGameFragment();
+        initPointsFragment();
+    }
+
+    private void initGameFragment(){
+        FragmentSwitch.to(pairMap.get(currentActiveGame).getFragment(), this, false, R.id.game_host_fragment);
+    }
+
+    private void initPointsFragment(){
+        PointsFragment pf = PointsFragment.newInstance(pairMap.get(currentActiveGame).getGame().getDuration());
+        pf.setTimerCallBack(this);
+        FragmentSwitch.to(pf, this, false, R.id.game_points_fragment);
+    }
+
+    @Override
+    public void onTimeTick(int secondsLeft) {
+        Log.d("Neda", secondsLeft + "");
+    }
+
+
+    @Override
+    public void onTimerFinished() {
+        Log.d("GameActivity", "Timer finished");
+        if (currentActiveGame == 0) {
+            AssociationFragment asoc = (AssociationFragment) getSupportFragmentManager().findFragmentById(R.id.game_host_fragment);
+            if (asoc !=null){
+                Game cg = pairMap.get(currentActiveGame).getGame();
+                if (cg.getActiveRound() < cg.getRounds()){
+                    cg.setActiveRound(cg.getActiveRound()+1);
+                    asoc.resetAll();
+                    initFragments();
+                }
+                else {
+                    currentActiveGame++;
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
 }

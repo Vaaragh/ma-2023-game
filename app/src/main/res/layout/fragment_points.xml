@@ -11,9 +11,9 @@
         android:id="@+id/player_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/mar_10dp"
         android:text="Player 1"
-        app:layout_constraintEnd_toStartOf="@+id/player_2"
+        app:layout_constraintEnd_toStartOf="@+id/timer"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,8 +22,8 @@
         android:id="@+id/player_1_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/mar_10dp"
+        android:layout_marginBottom="@dimen/mar_10dp"
         android:text="150"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/player_1"
@@ -33,22 +33,34 @@
         android:id="@+id/player_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/mar_10dp"
         android:text="Player 2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/player_1"
+        app:layout_constraintStart_toEndOf="@+id/timer"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/player_2_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/mar_10dp"
+        android:layout_marginBottom="@dimen/mar_10dp"
         android:text="150"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/player_2"
         app:layout_constraintTop_toBottomOf="@+id/player_2" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mar_10dp"
+
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/player_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/player_1"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

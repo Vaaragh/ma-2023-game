@@ -4,41 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/point_container_view"
-        android:name="game.slagalica.gameFragments.PointsFragment"
+>
+    <LinearLayout
+        android:id="@+id/game_points_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBaseline_toTopOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout="@layout/fragment_points" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
-    <fragment
+
+    <LinearLayout
         android:id="@+id/game_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:defaultNavHost="true"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/point_container_view"
-        tools:layout="@layout/fragment_question" />
-
-
-    <Button
-        android:id="@+id/switch_button"
-        android:layout_marginBottom="10dp"
-        android:layout_width="@dimen/temp_nav_w"
-        android:layout_height="@dimen/temp_nav"
-        android:text="next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/game_points_fragment"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

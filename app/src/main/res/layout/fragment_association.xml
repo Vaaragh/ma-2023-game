@@ -14,7 +14,6 @@
         android:layout_height="@dimen/touch_target"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Answer"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +32,6 @@
         android:layout_marginBottom="@dimen/association_v_offset"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Column 1"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/win_answer"
         app:layout_constraintEnd_toEndOf="@+id/win_answer" />
@@ -43,10 +41,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 4"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintBottom_toTopOf="@+id/column_1_answer"
         app:layout_constraintStart_toStartOf="@+id/column_1_answer" />
 
@@ -55,10 +54,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 3"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintBottom_toTopOf="@+id/column_1_4"
         app:layout_constraintStart_toStartOf="@+id/column_1_4" />
 
@@ -67,10 +67,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 2"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintBottom_toTopOf="@+id/column_1_3"
         app:layout_constraintStart_toStartOf="@+id/column_1_3" />
 
@@ -79,7 +80,7 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 1"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
         android:background="@color/reveal"
@@ -96,7 +97,6 @@
         android:layout_marginBottom="@dimen/association_v_offset"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Column 2"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/win_answer"
         app:layout_constraintStart_toStartOf="@+id/win_answer" />
@@ -106,10 +106,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 4"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintBottom_toTopOf="@+id/column_2_answer"
         app:layout_constraintStart_toStartOf="@+id/column_2_answer" />
 
@@ -118,10 +119,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 3"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintBottom_toTopOf="@+id/column_2_4"
         app:layout_constraintStart_toStartOf="@+id/column_2_4" />
 
@@ -130,10 +132,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 2"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintBottom_toTopOf="@+id/column_2_3"
         app:layout_constraintStart_toStartOf="@+id/column_2_3" />
 
@@ -142,7 +145,7 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginBottom="@dimen/association_v_offset"
-        android:text="Term 1"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
         android:background="@color/reveal"
@@ -159,7 +162,6 @@
         android:layout_marginTop="@dimen/association_v_offset"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Column 3"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/win_answer"
         app:layout_constraintEnd_toEndOf="@+id/win_answer" />
@@ -169,10 +171,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 4"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintTop_toBottomOf="@+id/column_3_answer"
         app:layout_constraintStart_toStartOf="@+id/column_3_answer" />
 
@@ -181,10 +184,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 3"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintTop_toBottomOf="@+id/column_3_4"
         app:layout_constraintStart_toStartOf="@+id/column_3_4" />
 
@@ -193,10 +197,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 2"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintTop_toBottomOf="@+id/column_3_3"
         app:layout_constraintStart_toStartOf="@+id/column_3_3" />
 
@@ -205,7 +210,7 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 1"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
         android:background="@color/reveal"
@@ -222,7 +227,6 @@
         android:layout_marginTop="@dimen/association_v_offset"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Column 3"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/win_answer"
         app:layout_constraintStart_toStartOf="@+id/win_answer" />
@@ -232,10 +236,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 4"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintTop_toBottomOf="@+id/column_4_answer"
         app:layout_constraintStart_toStartOf="@+id/column_4_answer" />
 
@@ -244,10 +249,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 3"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintTop_toBottomOf="@+id/column_4_4"
         app:layout_constraintStart_toStartOf="@+id/column_4_4" />
 
@@ -256,10 +262,11 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 2"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
-        android:background="@color/spoiler"
+        android:background="@color/reveal"
+
         app:layout_constraintTop_toBottomOf="@+id/column_4_3"
         app:layout_constraintStart_toStartOf="@+id/column_4_3" />
 
@@ -268,11 +275,19 @@
         android:layout_width="@dimen/a_s_w"
         android:layout_height="@dimen/a_s_h"
         android:layout_marginTop="@dimen/association_v_offset"
-        android:text="Term 1"
+
         android:gravity="center"
         android:textColor="@color/spoiler"
         android:background="@color/reveal"
         app:layout_constraintTop_toBottomOf="@+id/column_4_2"
         app:layout_constraintStart_toStartOf="@+id/column_4_2" />
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintStart_toEndOf="@+id/win_answer"
+        app:layout_constraintTop_toTopOf="@+id/win_answer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

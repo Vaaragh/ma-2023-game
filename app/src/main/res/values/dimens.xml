@@ -9,11 +9,14 @@
     <dimen name="table_field">100dp</dimen>
     <dimen name="text_button_width">140dp</dimen>
     <dimen name="text_button_height">40dp</dimen>
+    <dimen name="mar_10dp">10dp</dimen>
+
 
     <dimen name="picture">75dp</dimen>
     <dimen name="rt_width">60dp</dimen>
     <dimen name="rt_height">20dp</dimen>
     <dimen name="rt_v_offset">25dp</dimen>
+
 
     <dimen name="association_h_offset">100dp</dimen>
     <dimen name="association_v_offset">10dp</dimen>
@@ -23,5 +26,27 @@
 
     <dimen name="temp_nav">48dp</dimen>
     <dimen name="temp_nav_w">50dp</dimen>
+
+    <dimen name="notif_w">200dp</dimen>
+    <dimen name="notif_h">30dp</dimen>
+    <dimen name="notif_text">20dp</dimen>
+    <dimen name="notif_margin">10dp</dimen>
+
+    <dimen name="mm_10dp">10dp</dimen>
+    <dimen name="mm_5dp">5dp</dimen>
+    <dimen name="mm_15dp">15dp</dimen>
+    <dimen name="mm_icon">30dp</dimen>
+    <dimen name="mm_pic">40dp</dimen>
+    <dimen name="mm_symbol">48dp</dimen>
+
+    <dimen name="step_width">300dp</dimen>
+    <dimen name="step_height">40dp</dimen>
+    <dimen name="step_margin">10dp</dimen>
+
+
+    <dimen name="main_number">75dp</dimen>
+    <dimen name="calc_number">48dp</dimen>
+    <dimen name="exp_width">300dp</dimen>
+    <dimen name="exp_height">40dp</dimen>
 
 </resources>

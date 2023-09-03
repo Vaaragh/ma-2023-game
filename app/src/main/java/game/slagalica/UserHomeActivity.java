@@ -42,4 +42,8 @@ public class UserHomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
         NavigationUI.setupWithNavController(binding.navView, navController);
         }
+
+        public User getUser(){
+        return currentUser;
+        }
 }

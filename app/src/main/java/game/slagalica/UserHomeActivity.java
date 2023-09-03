@@ -12,11 +12,13 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import game.slagalica.databinding.ActivityUserHomeBinding;
+import game.slagalica.model.single.User;
 
 
 public class UserHomeActivity extends AppCompatActivity {
 
 
+    public static User currentUser;
     private ActivityUserHomeBinding binding;
 
     @Override
@@ -39,5 +41,5 @@ public class UserHomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_user_home);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
         NavigationUI.setupWithNavController(binding.navView, navController);
-            }
+        }
 }

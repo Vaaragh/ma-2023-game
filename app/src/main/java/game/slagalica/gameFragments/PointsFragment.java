@@ -73,7 +73,7 @@ public class PointsFragment extends Fragment {
     }
 
     private void initPLayers(){
-        leftPLayer = new PlayerInfo("guest", 0);
+        leftPLayer = new PlayerInfo("id", "user", 0);
     }
 
 

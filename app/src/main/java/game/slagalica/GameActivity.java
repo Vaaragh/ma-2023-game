@@ -9,6 +9,8 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.HashMap;
 
 import java.util.Map;
@@ -18,6 +20,7 @@ import game.slagalica.gameFragments.AssociationFragment;
 import game.slagalica.gameFragments.MastermindFragment;
 import game.slagalica.gameFragments.PointsFragment;
 
+import game.slagalica.model.aggregate.GameInfo;
 import game.slagalica.model.aggregate.GamePair;
 import game.slagalica.model.single.Association;
 import game.slagalica.model.single.Game;
@@ -27,7 +30,13 @@ import game.slagalica.utils.FragmentSwitch;
 public class GameActivity extends AppCompatActivity implements PointsFragment.TimerCallBack, AssociationFragment.SubmitCallback, MastermindFragment.SubmitCallback {
 
     private Map<Integer, GamePair> pairMap = new HashMap<>();
+    private PointsFragment pf;
+    private int currentGame = 0;
+    private GameInfo gameInfo;
+    private boolean gameFinished;
+    private FirebaseFirestore db;
     private int currentActiveGame = 0;
+
 
 
     @Override
@@ -35,6 +44,9 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_game);
+        db = FirebaseFirestore.getInstance();
+        gameInfo = (GameInfo) getIntent().getSerializableExtra("gameInfo");
+
 
         initGamesList();
         initFragments();
@@ -74,7 +86,7 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     }
 
     private void initPointsFragment(){
-        PointsFragment pf = PointsFragment.newInstance(pairMap.get(currentActiveGame).getGame().getDuration());
+        pf = PointsFragment.newInstance(pairMap.get(currentActiveGame).getGame().getDuration());
         pf.setTimerCallBack(this);
         FragmentSwitch.to(pf, this, false, R.id.game_points_fragment);
     }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Test</h1>
+    <button onclick="connectWebSocket()">Connect WebSocket</button>
+    <button onclick="sendPing()">Send Ping</button>
+    <div id="output"></div>
+
+    <script>
+        let socket;
+
+        function writeToOutput(message) {
+            const output = document.getElementById("output");
+            const p = document.createElement("p");
+            p.textContent = message;
+            output.appendChild(p);
+        }
+
+        function connectWebSocket() {
+            const serverUrl = "ws://192.168.0.15:3001"; // Replace with your WebSocket server URL
+            socket = new WebSocket(serverUrl);
+
+            socket.addEventListener("open", (event) => {
+                writeToOutput("WebSocket connection opened.");
+            });
+
+            socket.addEventListener("message", (event) => {
+                writeToOutput("Received message from server: " + event.data);
+            });
+
+            socket.addEventListener("close", (event) => {
+                if (event.wasClean) {
+                    writeToOutput(`Connection closed cleanly, code=${event.code}, reason=${event.reason}`);
+                } else {
+                    writeToOutput("Connection abruptly closed.");
+                }
+            });
+
+            socket.addEventListener("error", (event) => {
+                writeToOutput("WebSocket error: " + event);
+            });
+        }
+
+        function sendPing() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                const message = "Ping";
+                socket.send(message);
+                writeToOutput("Sent message to server: " + message);
+            } else {
+                writeToOutput("WebSocket is not open.");
+            }
+        }
+    </script>
+</body>
+</html>

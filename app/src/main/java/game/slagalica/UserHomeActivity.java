@@ -25,7 +25,6 @@ public class UserHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-
         binding = ActivityUserHomeBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());

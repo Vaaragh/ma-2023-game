@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 
 import io.socket.client.Socket;
 import io.socket.client.IO;
+import io.socket.emitter.Emitter;
 
 public class SocketHandler {
 
@@ -24,8 +25,16 @@ public class SocketHandler {
 
     public void connect(){
         try {
-            socket = IO.socket("http://192.168.0.15.3000");
+            Log.d("Start", "connection");
+            socket = IO.socket("http://192.168.0.10:3002");
+            socket.on(Socket.EVENT_CONNECT, args -> {
+                socket.emit("ping", "pong");
+                Log.d("Sent", "ping");
+                socket.on("pong", args1 -> Log.d("Received", "pong"));
+            });
             socket.connect();
+
+
         } catch (URISyntaxException e){
             throw new RuntimeException(e);
         }

@@ -1,0 +1,5 @@
+. U SocketHandler klasi podesiti IP adresu mreze koju ce koristiti uredjaji (IPv4 wireless)
+. Instalirati aplikaciju na uredjaje
+. Instalirati neophodne module za server.js skriptu koja se nalazi u samom repozitorijumu ($ npm update ili $ npm install)
+. Pokrenuti skriptu ($ node server.js)
+. Pokrenuti aplikaciju na uredjajima

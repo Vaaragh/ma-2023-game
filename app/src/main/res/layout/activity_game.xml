@@ -23,7 +23,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/game_points_fragment"/>
+
+        tools:layout="@layout/fragment_question" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

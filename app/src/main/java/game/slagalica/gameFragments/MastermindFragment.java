@@ -229,7 +229,11 @@ public class MastermindFragment extends Fragment {
                 subA.add(finalIndex);
                 if (columnCounter == 4){
                     try {
-                        socket.emit("answerMastermind", new JSONObject().put("answer", subA).put("counter", rowCounter+1));
+                        socket.emit("answerMastermind", new JSONObject()
+                                .put("answer", subA)
+                                .put("counter", rowCounter+1)
+                                .put("player", user.getId())
+                                .put("match", gameInfo.getId()));
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }

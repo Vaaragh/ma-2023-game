@@ -96,7 +96,7 @@ io.on('connection', (socket) => {
         questionNum:0,
         openFields: [],
         mastermindInfo: {
-
+          submitCombo: [],
           masterCombo: [],
           fullMatch : 0,
           partialMatch: 0,
@@ -128,14 +128,35 @@ io.on('connection', (socket) => {
   socket.on("startMastermind", ({matchId}) => {
     getMastermindData().then((data) => {
       const ma = match[matchId]
-      ma.masterCombo = data
+      ma.mastermindInfo.masterCombo = data
       ma.mastermindInfo.activePlayer = ma.p1
       io.to(matchId).emit("mastermindList", {...ma});
       console.log(data);
-      socket.on("answerMastermind", ({answer, counter}) => {
-        //TODO
-        // check the answer against combo
+      socket.on("answerMastermind", ({answer, counter, player, match}) => {
+        const combo = ma.mastermindInfo.masterCombo  
+        ma.mastermindInfo.submitCombo = answer
+        const masterCopy = [...combo]
+        const answerCopy = [...answer]
+        for (let i=0;i<combo.length;i++){
+          if (masterCopy[i]===answerCopy[i]){
+            ma.mastermindInfo.fullMatch++
+            masterCopy[i]=null
+            answerCopy[i]=null
+          }
+        }
+        for(let i=0;i<combo.length;i++){
+          if (answerCopy[i]!==null){
+            const index = masterCopy.indexOf(answerCopy[i])
+            if (index !== -1){
+              ma.mastermindInfo.partialMatch++
+              answerCopy[index]=null
+              masterCopy[i]=null
+            }
+          }
+        }
+         
         
+
       io.to(matchId).emit("pegUpdate", {...ma})
       })
     })

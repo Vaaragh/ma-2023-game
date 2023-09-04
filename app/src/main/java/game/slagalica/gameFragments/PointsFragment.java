@@ -47,12 +47,13 @@ public class PointsFragment extends Fragment {
         if (id.equals(leftPLayer.getPlayerId())){
             leftPLayer.setPoints(leftPLayer.getPoints() + points);
             Log.d("peoni left", String.valueOf(leftPLayer.getPoints()));
-            leftPoints.setText(String.valueOf(leftPLayer.getPoints()));
         } else {
             rightPlayer.setPoints(rightPlayer.getPoints() + points);
             Log.d("peoni right", String.valueOf(leftPLayer.getPoints()));
-            rightPoints.setText(String.valueOf(rightPlayer.getPoints()));
         }
+        rightPoints.setText(String.valueOf(rightPlayer.getPoints()));
+        leftPoints.setText(String.valueOf(leftPLayer.getPoints()));
+
     }
 
     @Override
@@ -92,7 +93,7 @@ public class PointsFragment extends Fragment {
     }
 
     public void startTimer(long duration) {
-        long miDur = duration * 60 * 1000;
+        long miDur = duration * 60 * 1000 / 12;
         new CountDownTimer(miDur,1000){
 
             @Override

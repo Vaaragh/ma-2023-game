@@ -11,23 +11,46 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import game.slagalica.R;
+import game.slagalica.SocketHandler;
+import game.slagalica.model.aggregate.GameInfo;
+import game.slagalica.model.single.User;
+import io.socket.client.Socket;
 
 
 public class MastermindFragment extends Fragment {
 
     private View view;
+
+    private User user;
+
+    private Socket socket;
+    private GameInfo gameInfo;
+
+    private int numOfTries = 0;
+    private int numOfIcons = 0;
     private ImageView row11,row12,row13,row14;
     private ImageView row21,row22,row23,row24;
     private ImageView row31,row32,row33,row34;
 
+    private ImageView row41,row42,row43,row44;
+    private ImageView row51,row52,row53,row54;
+    private ImageView row61,row62,row63,row64;
+
     private ImageView ans31,ans32,ans33,ans34;
     private ImageView ans21,ans22,ans23,ans24;
     private ImageView ans11,ans12,ans13,ans14;
+
+    private ImageView ans41,ans42,ans43,ans44;
+    private ImageView ans51,ans52,ans53,ans54;
+    private ImageView ans61,ans62,ans63,ans64;
 
     private ImageView rowB1,rowB2,rowB3,rowB4,rowB5,rowB6;
     private List<ImageView> rowB = new ArrayList<>();
@@ -39,6 +62,10 @@ public class MastermindFragment extends Fragment {
     private List<ImageView> row2 = new ArrayList<>();
     private List<ImageView> row3 = new ArrayList<>();
     private List<ImageView> row4 = new ArrayList<>();
+    private List<ImageView> row5 = new ArrayList<>();
+
+    private List<ImageView> row6 = new ArrayList<>();
+
     private List<List<ImageView>> row = new ArrayList<>();
 
 
@@ -46,6 +73,10 @@ public class MastermindFragment extends Fragment {
     private List<ImageView> ans2 = new ArrayList<>();
     private List<ImageView> ans3 = new ArrayList<>();
     private List<ImageView> ans4 = new ArrayList<>();
+    private List<ImageView> ans5 = new ArrayList<>();
+
+    private List<ImageView> ans6 = new ArrayList<>();
+
     private List<List<ImageView>> ans = new ArrayList<>();
 
     private int rowCounter = 0;
@@ -62,8 +93,11 @@ public class MastermindFragment extends Fragment {
 
     private MastermindFragment(){}
 
-    public static MastermindFragment newInstance(){
-        return new MastermindFragment();
+    public static MastermindFragment newInstance(GameInfo gameInfo, User user){
+        MastermindFragment mmf =new MastermindFragment();
+        mmf.gameInfo = gameInfo;
+        mmf.user = user;
+        return mmf;
     }
 
     public interface SubmitCallback {
@@ -78,8 +112,13 @@ public class MastermindFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         view = inflater.inflate(R.layout.fragment_mastermind, container, false);
+        socket = SocketHandler.getInstance().getSocket();
+        try {
+            socket.emit("startMastermind", new JSONObject().put("matchId", gameInfo.getId()));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
-        generateFinal();
         initFields();
         initRes();
         initBut();
@@ -107,7 +146,26 @@ public class MastermindFragment extends Fragment {
         row34 = view.findViewById(R.id.row34);
         row3 = Arrays.asList(row31,row32,row33,row34);
 
-        row = Arrays.asList(row1,row2,row3);
+        row41 = view.findViewById(R.id.row41);
+        row42 = view.findViewById(R.id.row42);
+        row43 = view.findViewById(R.id.row43);
+        row44 = view.findViewById(R.id.row44);
+        row4 = Arrays.asList(row41,row42,row43,row44);
+
+
+        row51 = view.findViewById(R.id.row51);
+        row52 = view.findViewById(R.id.row52);
+        row53 = view.findViewById(R.id.row53);
+        row54 = view.findViewById(R.id.row54);
+        row5 = Arrays.asList(row51,row52,row53,row54);
+
+        row61 = view.findViewById(R.id.row61);
+        row62 = view.findViewById(R.id.row62);
+        row63 = view.findViewById(R.id.row63);
+        row64 = view.findViewById(R.id.row64);
+        row6 = Arrays.asList(row61,row62,row63,row64);
+
+        row = Arrays.asList(row1,row2,row3, row4, row5, row6);
     }
 
     private void initRes(){
@@ -129,7 +187,26 @@ public class MastermindFragment extends Fragment {
         ans34 = view.findViewById(R.id.ans34);
         ans3 = Arrays.asList(ans31,ans32,ans33,ans34);
 
-        ans = Arrays.asList(ans1,ans2,ans3);
+        ans41 = view.findViewById(R.id.ans41);
+        ans42 = view.findViewById(R.id.ans42);
+        ans43 = view.findViewById(R.id.ans43);
+        ans44 = view.findViewById(R.id.ans44);
+        ans4 = Arrays.asList(ans41,ans42,ans43,ans44);
+
+        ans51 = view.findViewById(R.id.ans51);
+        ans52 = view.findViewById(R.id.ans52);
+        ans53 = view.findViewById(R.id.ans53);
+        ans54 = view.findViewById(R.id.ans54);
+        ans5 = Arrays.asList(ans51,ans52,ans53,ans54);
+
+
+        ans61 = view.findViewById(R.id.ans61);
+        ans62 = view.findViewById(R.id.ans62);
+        ans63 = view.findViewById(R.id.ans63);
+        ans64 = view.findViewById(R.id.ans64);
+        ans6 = Arrays.asList(ans61,ans62,ans63,ans64);
+
+        ans = Arrays.asList(ans1,ans2,ans3,ans4,ans5,ans6);
     }
     private void initBut(){
 
@@ -141,9 +218,7 @@ public class MastermindFragment extends Fragment {
         rowB6 = view.findViewById(R.id.rowB6);
         rowB = Arrays.asList(rowB1,rowB2,rowB3,rowB4,rowB5,rowB6);
     }
-    private void generateFinal(){
-        genA = Arrays.asList(1,2,3,4);
-    }
+
     private void initListeners(){
         int index = 0;
         for (ImageView im: rowB){
@@ -153,42 +228,33 @@ public class MastermindFragment extends Fragment {
                 columnCounter++;
                 subA.add(finalIndex);
                 if (columnCounter == 4){
-                    columnCounter = 0;
-                    rowCounter++;
-                    checkAns();
+                    try {
+                        socket.emit("answerMastermind", new JSONObject().put("answer", subA).put("counter", rowCounter+1));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                    socket.on("pegUpdate", val -> {
+                        JSONObject jsonObject = (JSONObject) val[0];
+                        try {
+                            JSONObject stats = jsonObject.getJSONObject("mastermindInfo");
+                            corPos = stats.getInt("fullMatch");
+                            corSym = stats.getInt("partialMatch");
+                            columnCounter = 0;
+                            rowCounter++;
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+
                     renderRes(rowCounter-1);
                     subA = new ArrayList<>();
-                }
-                if (rowCounter==3){
-                    rowCounter = 0;
                 }
             });
             index++;
         }
     }
 
-    private void checkAns(){
-        List<Integer> copy = new ArrayList<>(genA);
 
-        for(int i=0;i<4;i++){
-            if (subA.get(i)==copy.get(i)){
-                corPos++;
-                copy.set(i,9);
-                subA.set(i,9);
-            }
-        }
-        if (corPos==4){
-            submitPoints();
-        }
-        for(int j=0;j<4;j++){
-            if (copy.contains(subA.get(j))){
-                corSym++;
-                copy.set(copy.indexOf(subA.get(j)),9);
-            }
-        }
-
-
-    }
 
     private void renderRes(int r){
         for (int i=0;i<corPos;i++){
@@ -218,7 +284,6 @@ public class MastermindFragment extends Fragment {
     }
 
     public void resetAll(){
-        generateFinal();
         initFields();
         initRes();
         setBlanks();

@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import game.slagalica.GameActivity;
@@ -39,7 +40,7 @@ public class QuestionFragment extends Fragment {
     private Socket socket;
 
     public interface SubmitCallback {
-        void onAnswerSubmitQuestion(int points, boolean finish);
+        void onAnswerSubmitQuestion(boolean finish);
         void updateQuestionPoints();
     }
 
@@ -62,15 +63,16 @@ public class QuestionFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_question, container, false);
             initViews();
             socket = SocketHandler.getInstance().getSocket();
-        try {
-            socket.emit("startQuestion", new JSONObject().put("matchId", gameInfo.getId()));
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+            try {
+                socket.emit("startQuestion", new JSONObject().put("matchId", gameInfo.getId()));
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
 
 
             initQuestions();
             initBtnListeners();
+            questionUpdate();
 
 
             return view;
@@ -104,7 +106,7 @@ public class QuestionFragment extends Fragment {
 
     private void generateQuestionList(){
         socket.on("questionList", val -> {
-            Log.d("Emiter", "Received");
+            Log.d("Emiter", "Received questions");
             JSONObject jObj = (JSONObject) val[0];
             questions = new ArrayList<>();
             try{
@@ -124,7 +126,9 @@ public class QuestionFragment extends Fragment {
     }
 
     private void initQuestionRound(){
+        Log.d("UPDATE", String.valueOf(currentQuestion) + " is the current question");
         question.setText(questions.get(currentQuestion).getQuestion());
+        Collections.shuffle(submits);
         for (int i=0;i<questions.size();i++){
             submits.get(i).setText(questions.get(currentQuestion).getOptions().get(i));
         }
@@ -146,11 +150,12 @@ public class QuestionFragment extends Fragment {
     private void buttonSubmit(Button b, String ans) throws JSONException {
         socket.emit("answerQuestion", answerEmit(b, ans));
 
-        if (b.getText().toString().equals(ans)){
-            b.setBackgroundColor(Color.rgb(0,128,0));
-        } else {
-            b.setBackgroundColor(Color.rgb(255,0,0));
-        }
+//        if (b.getText().toString().equals(ans)){
+//            b.setBackgroundColor(Color.rgb(0,128,0));
+//        } else {
+//            b.setBackgroundColor(Color.rgb(255,0,0));
+//        }
+
     }
 
     private JSONObject answerEmit(Button b, String ans) throws JSONException {
@@ -164,13 +169,25 @@ public class QuestionFragment extends Fragment {
 
     private void questionUpdate(){
         socket.on("questionUpdate", val -> {
+            Log.d("Emiter", "UPDATE APPROVAL");
             JSONObject jObj = (JSONObject) val[0];
             try{
-                int p1Points = jObj.getInt("player1Points");
-                int p2Points = jObj.getInt("player2Points");
+                int p1Points = jObj.getInt("p1Points");
+                int p2Points = jObj.getInt("p2Points");
 
                 this.gameInfo.getPlayer1().setPoints(p1Points);
                 this.gameInfo.getPlayer2().setPoints(p2Points);
+                this.currentQuestion = jObj.getInt("questionNum");
+                Log.d("CURRENT GAME", String.valueOf(currentQuestion));
+                if (currentQuestion > 2){
+                    if (callbackQuestion != null){
+                        callbackQuestion.onAnswerSubmitQuestion(true);
+                    }
+                }else{
+                    initQuestionRound();
+
+                }
+
                 callbackQuestion.updateQuestionPoints();
             } catch (JSONException e) {
                 throw new RuntimeException(e);

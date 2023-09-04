@@ -16,17 +16,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import game.slagalica.R;
 import game.slagalica.SocketHandler;
+import game.slagalica.model.aggregate.GameInfo;
 import io.socket.client.Socket;
 
 public class AssociationFragment extends Fragment {
 
     private Socket socket;
+    private GameInfo gameInfo;
+
     private View view;
     private List<String> column1;
     private List<String> column2;
@@ -42,8 +49,8 @@ public class AssociationFragment extends Fragment {
 
     private List<EditText> winInputs = new ArrayList<>();
 
-    private TextView a1,a2,a3,a4,b1,b2,b3,b4,c1,c2,c3,c4,d1,d2,d3,d4;
-    private EditText a,b,c,d,win;
+    private TextView a1, a2, a3, a4, b1, b2, b3, b4, c1, c2, c3, c4, d1, d2, d3, d4;
+    private EditText a, b, c, d, win;
     private Button subBtn;
 
     private int points;
@@ -55,14 +62,16 @@ public class AssociationFragment extends Fragment {
     private boolean finished = false;
 
 
-
-    public static AssociationFragment newInstance(){
-        return new AssociationFragment();
+    public static AssociationFragment newInstance(GameInfo gameinfo) {
+        AssociationFragment af = new AssociationFragment();
+        af.gameInfo = gameinfo;
+        return af;
     }
 
     public interface SubmitCallback {
         void onAnswerSubmitAssociation(int points, boolean finish);
     }
+
     public void setSubmitCallback(SubmitCallback callback) {
         submitCallback = callback;
     }
@@ -77,36 +86,42 @@ public class AssociationFragment extends Fragment {
         initSubmitBtn();
         socket = SocketHandler.getInstance().getSocket();
 
+        try {
+            socket.emit("startAssociation", new JSONObject().put("matchId", gameInfo.getId()));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
         return view;
     }
 
-    private void initTextViews(){
+    private void initTextViews() {
         a1 = view.findViewById(R.id.column_1_1);
         a2 = view.findViewById(R.id.column_1_2);
         a3 = view.findViewById(R.id.column_1_3);
         a4 = view.findViewById(R.id.column_1_4);
-        columnA = Arrays.asList(a1,a2,a3,a4);
+        columnA = Arrays.asList(a1, a2, a3, a4);
 
         b1 = view.findViewById(R.id.column_2_1);
         b2 = view.findViewById(R.id.column_2_2);
         b3 = view.findViewById(R.id.column_2_3);
         b4 = view.findViewById(R.id.column_2_4);
-        columnB = Arrays.asList(b1,b2,b3,b4);
+        columnB = Arrays.asList(b1, b2, b3, b4);
 
         c1 = view.findViewById(R.id.column_3_1);
         c2 = view.findViewById(R.id.column_3_2);
         c3 = view.findViewById(R.id.column_3_3);
         c4 = view.findViewById(R.id.column_3_4);
-        columnC = Arrays.asList(c1,c2,c3,c4);
+        columnC = Arrays.asList(c1, c2, c3, c4);
 
         d1 = view.findViewById(R.id.column_4_1);
         d2 = view.findViewById(R.id.column_4_2);
         d3 = view.findViewById(R.id.column_4_3);
         d4 = view.findViewById(R.id.column_4_4);
-        columnD = Arrays.asList(d1,d2,d3,d4);
+        columnD = Arrays.asList(d1, d2, d3, d4);
     }
 
-    private void initEditTexts(){
+    private void initEditTexts() {
         columFlags = new ArrayList<>();
         columFlags.add(false);
         columFlags.add(false);
@@ -117,79 +132,108 @@ public class AssociationFragment extends Fragment {
         c = view.findViewById(R.id.column_3_answer);
         d = view.findViewById(R.id.column_4_answer);
         win = view.findViewById(R.id.win_answer);
-        winInputs = Arrays.asList(a,b,c,d,win);
+        winInputs = Arrays.asList(a, b, c, d, win);
     }
 
-    private void initSubmitBtn(){
+    private void initSubmitBtn() {
         subBtn = view.findViewById(R.id.submit_btn);
         subBtn.setOnClickListener(v -> {
             int points = 0;
-            for (int i=0;i<winInputs.size();i++){
-                if (winInputs.get(i).getText().toString().equals(winList.get(i))){
-                    revealEdit(winInputs.get(i),winList.get(i));
-                    switch(i){
+            for (int i = 0; i < winInputs.size(); i++) {
+                if (winInputs.get(i).getText().toString().equals(winList.get(i))) {
+                    revealEdit(winInputs.get(i), winList.get(i));
+                    switch (i) {
                         case 0:
-                            if (!columFlags.get(i)){
-                            fillArray(columnA,column1);
-                            columFlags.set(i, true);
-                            this.points +=2;                            }
+                            if (!columFlags.get(i)) {
+                                fillArray(columnA, column1);
+                                columFlags.set(i, true);
+                                this.points += 2;
+                            }
                             break;
                         case 1:
-                            if (!columFlags.get(i)){
-                                fillArray(columnB,column2);
+                            if (!columFlags.get(i)) {
+                                fillArray(columnB, column2);
                                 columFlags.set(i, true);
-                                this.points +=2;                            }
+                                this.points += 2;
+                            }
                             break;
                         case 2:
-                            if (!columFlags.get(i)){
-                                fillArray(columnC,column3);
+                            if (!columFlags.get(i)) {
+                                fillArray(columnC, column3);
                                 columFlags.set(i, true);
-                                this.points +=2;                            }
+                                this.points += 2;
+                            }
                             break;
                         case 3:
-                            if (!columFlags.get(i)){
-                                fillArray(columnD,column4);
+                            if (!columFlags.get(i)) {
+                                fillArray(columnD, column4);
                                 columFlags.set(i, true);
-                                this.points +=2;
+                                this.points += 2;
                             }
                             break;
                         case 4:
-                            fillArray(columnA,column1);
-                            fillArray(columnB,column2);
-                            fillArray(columnC,column3);
-                            fillArray(columnD,column4);
-                            fillEdits(winInputs,winList);
-                            this.points +=7;
+                            fillArray(columnA, column1);
+                            fillArray(columnB, column2);
+                            fillArray(columnC, column3);
+                            fillArray(columnD, column4);
+                            fillEdits(winInputs, winList);
+                            this.points += 7;
                             this.finished = true;
                             break;
                     }
                     submitAnswer();
                     this.points = 0;
                 } else {
-                    reveal(winInputs.get(i),"");
+                    reveal(winInputs.get(i), "");
                 }
             }
         });
     }
 
-    private void fetchMapData(){
-        FirebaseFirestore fsdb = FirebaseFirestore.getInstance();
-        fsdb.collection("association").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()){
-                QuerySnapshot querySnapshot=task.getResult();
-                if (querySnapshot!=null){
-                    for (QueryDocumentSnapshot document:querySnapshot){
-                        column1 = (List<String>) document.get("column1");
-                        column2 = (List<String>) document.get("column2");
-                        column3 = (List<String>) document.get("column3");
-                        column4 = (List<String>) document.get("column4");
-
-                        winList = (List<String>) document.get("column5");
-                    }
-                }
+    private void fetchMapData() {
+        socket.on("associationList", val -> {
+            Log.d("Emiter", "Received association");
+            JSONObject jObj = (JSONObject) val[0];
+            try {
+                JSONArray jColumn1 = jObj.getJSONArray("column1");
+                JSONArray jColumn2 = jObj.getJSONArray("column2");
+                JSONArray jColumn3 = jObj.getJSONArray("column3");
+                JSONArray jColumn4 = jObj.getJSONArray("column4");
+                JSONArray jColumn5 = jObj.getJSONArray("column5");
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
+
+
         });
+
     }
+
+    private void generateColumn(JSONArray j, List<TextView> l) {
+        for (int i=0;i<j.length();i++ ){
+
+        }
+    }
+
+
+//        FirebaseFirestore fsdb = FirebaseFirestore.getInstance();
+//        fsdb.collection("association").get().addOnCompleteListener(task -> {
+//            if (task.isSuccessful()){
+//                QuerySnapshot querySnapshot=task.getResult();
+//                if (querySnapshot!=null){
+//                    for (QueryDocumentSnapshot document:querySnapshot){
+//                        column1 = (List<String>) document.get("column1");
+//                        column2 = (List<String>) document.get("column2");
+//                        column3 = (List<String>) document.get("column3");
+//                        column4 = (List<String>) document.get("column4");
+//
+//                        winList = (List<String>) document.get("column5");
+//                    }
+//                }
+//            }
+//        });
+//  }
+
     private void initTextViewListeners(){
         for (int i=0; i<columnA.size();i++){
             TextView t = columnA.get(i);

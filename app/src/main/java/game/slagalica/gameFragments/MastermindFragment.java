@@ -260,12 +260,25 @@ public class MastermindFragment extends Fragment {
 
 
 
+
+
     private void renderRes(int r){
+        List comboAns = new ArrayList<>();
         for (int i=0;i<corPos;i++){
-            ans.get(r).get(i).setImageDrawable(getResources().getDrawable(R.drawable.ic_home_black_24dp));
+            comboAns.add("b");
         }
-        for (int j=corPos;j<corSym-1;j++){
-            ans.get(r).get(j).setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_black_24dp));
+        for (int i=0;i<corSym;i++){
+            comboAns.add("w");
+        }
+        for (int i=0;i<comboAns.size();i++){
+            if (comboAns.get(i).equals("b")) {
+                ans.get(r).get(i).setImageDrawable(getResources().getDrawable(R.drawable.ic_home_black_24dp));
+            } else {
+                ans.get(r).get(i).setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_black_24dp));
+            }
+        }
+        if (corPos==4){
+            submitPoints();
         }
         corPos=0;
         corSym=0;

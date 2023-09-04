@@ -68,7 +68,7 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
         AssociationFragment fragmentAssociation = AssociationFragment.newInstance(gameInfo);
         GamePair associationPair = new GamePair(association, fragmentAssociation);
 
-        Mastermind mastermind = new Mastermind(1,30,0,12,1);
+        Mastermind mastermind = new Mastermind(2,30,0,12,1);
         MastermindFragment mmF = MastermindFragment.newInstance(gameInfo, user);
         GamePair mastermindPair = new GamePair(mastermind, mmF);
 

@@ -1,11 +1,13 @@
 package game.slagalica.model.single;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String id, username, email, password;
     private int tokens, stars;
 
 
-    public User() {
+    public User(){
     }
 
     public User(String id, String username, String email, String password, int tokens, int stars) {

@@ -5,12 +5,12 @@ public class Game {
     int maxPoints;
     int minPoints;
     int activeRound;
-    int duration;
+    long duration;
 
     public Game() {
     }
 
-    public Game(int rounds, int maxPoints, int minPoints, int activeRound, int duration) {
+    public Game(int rounds, int maxPoints, int minPoints, int activeRound, long duration) {
         this.rounds = rounds;
         this.maxPoints = maxPoints;
         this.minPoints = minPoints;
@@ -34,7 +34,7 @@ public class Game {
         return activeRound;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 

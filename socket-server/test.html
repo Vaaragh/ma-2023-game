@@ -21,7 +21,7 @@
         }
 
         function connectWebSocket() {
-            const serverUrl = "ws://192.168.0.15:3001"; // Replace with your WebSocket server URL
+            const serverUrl = "ws://192.168.56.1:3000"; // Replace with your WebSocket server URL
             socket = new WebSocket(serverUrl);
 
             socket.addEventListener("open", (event) => {

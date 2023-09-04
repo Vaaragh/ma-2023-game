@@ -20,14 +20,18 @@ import game.slagalica.gameFragments.AssociationFragment;
 import game.slagalica.gameFragments.MastermindFragment;
 import game.slagalica.gameFragments.PointsFragment;
 
+import game.slagalica.gameFragments.QuestionFragment;
 import game.slagalica.model.aggregate.GameInfo;
 import game.slagalica.model.aggregate.GamePair;
 import game.slagalica.model.single.Association;
 import game.slagalica.model.single.Game;
 import game.slagalica.model.single.Mastermind;
+import game.slagalica.model.single.Question;
+import game.slagalica.model.single.User;
 import game.slagalica.utils.FragmentSwitch;
+import io.socket.client.Socket;
 
-public class GameActivity extends AppCompatActivity implements PointsFragment.TimerCallBack, AssociationFragment.SubmitCallback, MastermindFragment.SubmitCallback {
+public class GameActivity extends AppCompatActivity implements PointsFragment.TimerCallBack, AssociationFragment.SubmitCallback, MastermindFragment.SubmitCallback, QuestionFragment.SubmitCallback {
 
     private Map<Integer, GamePair> pairMap = new HashMap<>();
     private PointsFragment pf;
@@ -37,6 +41,7 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     private FirebaseFirestore db;
     private int currentActiveGame = 0;
 
+    public static User user;
 
 
     @Override
@@ -46,6 +51,7 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
         setContentView(R.layout.activity_game);
         db = FirebaseFirestore.getInstance();
         gameInfo = (GameInfo) getIntent().getSerializableExtra("gameInfo");
+        user = (User) getIntent().getSerializableExtra("currentUser");
 
 
         initGamesList();
@@ -54,6 +60,10 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     }
 
     private void initGamesList(){
+        Question question = new Question(1, 20, 0, 1,1 );
+        QuestionFragment questionFragment = QuestionFragment.newInstance(gameInfo);
+        GamePair questionPair = new GamePair(question, questionFragment);
+
         Association association = new Association(1,30, 0, 1,1);
         AssociationFragment fragmentAssociation = new AssociationFragment();
         GamePair associationPair = new GamePair(association, fragmentAssociation);
@@ -62,8 +72,9 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
         MastermindFragment mmF = MastermindFragment.newInstance();
         GamePair mastermindPair = new GamePair(mastermind, mmF);
 
-        pairMap.put(0, associationPair);
-        pairMap.put(1, mastermindPair);
+        pairMap.put(0, questionPair);
+        pairMap.put(1, associationPair);
+        pairMap.put(2, mastermindPair);
     }
 
     public void initFragments(){
@@ -73,10 +84,15 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
 
     private void initGameFragment(){
         if (currentActiveGame==0){
+            ((QuestionFragment) pairMap.get(currentActiveGame).getFragment()).setSubmitCallback(this);
+            FragmentSwitch.to(pairMap.get(currentActiveGame).getFragment(), this, false,R.id.game_host_fragment);
+        }
+
+        if (currentActiveGame==1){
             ((AssociationFragment) pairMap.get(currentActiveGame).getFragment()).setSubmitCallback(this);
             FragmentSwitch.to(pairMap.get(currentActiveGame).getFragment(), this, false, R.id.game_host_fragment);
         }
-        if (currentActiveGame==1){
+        if (currentActiveGame==2){
             ((MastermindFragment) pairMap.get(currentActiveGame).getFragment()).setSubmitCallback(this);
             FragmentSwitch.to(pairMap.get(currentActiveGame).getFragment(), this,false, R.id.game_host_fragment);
         }
@@ -86,7 +102,8 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     }
 
     private void initPointsFragment(){
-        pf = PointsFragment.newInstance(pairMap.get(currentActiveGame).getGame().getDuration());
+
+        pf = PointsFragment.newInstance(pairMap.get(currentActiveGame).getGame().getDuration(), gameInfo);
         pf.setTimerCallBack(this);
         FragmentSwitch.to(pf, this, false, R.id.game_points_fragment);
     }
@@ -138,24 +155,35 @@ public class GameActivity extends AppCompatActivity implements PointsFragment.Ti
     }
 
 
-    @Override
-    public void onAnswerSubmitAssociation(int points, boolean finish) {
-        PointsFragment pf = (PointsFragment) getSupportFragmentManager().findFragmentById(R.id.game_points_fragment);
-        pf.updatePlayerPoints("guest", points);
-        if (finish){
-            switchGame();
-        }
-
-
-    }
 
     @Override
     public void onAnswerSubmitMastermind(int points, boolean finish) {
         PointsFragment pf = (PointsFragment) getSupportFragmentManager().findFragmentById(R.id.game_points_fragment);
-        pf.updatePlayerPoints("guest", points);
+        pf.updatePlayerPoints(user.getId(), points);
         if (finish){
             Intent intent = new Intent(this, GuestHomeActivity.class);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onAnswerSubmitAssociation(int points, boolean finish) {
+        PointsFragment pf = (PointsFragment) getSupportFragmentManager().findFragmentById(R.id.game_points_fragment);
+        pf.updatePlayerPoints(user.getId(), points);
+        if (finish){
+            switchGame();
+        }
+    }
+
+    @Override
+    public void onAnswerSubmitQuestion(int points, boolean finish) {
+        PointsFragment pf = (PointsFragment) getSupportFragmentManager().findFragmentById(R.id.game_points_fragment);
+        pf.updatePlayerPoints(user.getId(), points);
+
+    }
+
+    @Override
+    public void updateQuestionPoints() {
+        pf.updatePlayerPoints(" ", 0);
     }
 }

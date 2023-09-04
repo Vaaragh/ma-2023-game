@@ -4,7 +4,7 @@ public class Question extends Game{
 
     public Question() {}
 
-    public Question(int rounds, int maxPoints, int minPoints, int duration, int activeRound) {
+    public Question(int rounds, int maxPoints, int minPoints, long duration, int activeRound) {
         super(rounds, maxPoints, minPoints,activeRound , duration);
     }
 }

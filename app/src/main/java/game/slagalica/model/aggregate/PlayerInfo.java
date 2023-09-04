@@ -1,6 +1,8 @@
 package game.slagalica.model.aggregate;
 
-public class PlayerInfo {
+import java.io.Serializable;
+
+public class PlayerInfo implements Serializable {
 
     private String playerId, username;
     private int points;

@@ -14,17 +14,21 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import game.slagalica.R;
+import game.slagalica.model.aggregate.GameInfo;
 import game.slagalica.model.aggregate.PlayerInfo;
 
 
 public class PointsFragment extends Fragment {
     private View view;
-    private int duration;
+    private long duration;
     private TimerCallBack timerCallBack;
     private TextView timeLeft;
 
-    private PlayerInfo leftPLayer;
-    private TextView leftPoints;
+    private PlayerInfo leftPLayer, rightPlayer;
+
+    private TextView leftPoints, rightPoints;
+    private TextView leftUser, rightUser;
+    private GameInfo gameInfo;
 
     public interface TimerCallBack{
         void onTimeTick(int secondsLeft);
@@ -32,20 +36,24 @@ public class PointsFragment extends Fragment {
 
     }
 
-    public static PointsFragment newInstance(int duration) {
+    public static PointsFragment newInstance(long duration, GameInfo gameInfo) {
         PointsFragment fragment = new PointsFragment();
+        fragment.gameInfo = gameInfo;
         fragment.duration = duration;
         return fragment;
     }
 
     public void updatePlayerPoints(String id, int points){
-        leftPLayer.setPoints(leftPLayer.getPoints() + points);
-        Log.d("peoni", String.valueOf(leftPLayer.getPoints()));
-        leftPoints.setText(String.valueOf(leftPLayer.getPoints()));
-
+        if (id.equals(leftPLayer.getPlayerId())){
+            leftPLayer.setPoints(leftPLayer.getPoints() + points);
+            Log.d("peoni left", String.valueOf(leftPLayer.getPoints()));
+            leftPoints.setText(String.valueOf(leftPLayer.getPoints()));
+        } else {
+            rightPlayer.setPoints(rightPlayer.getPoints() + points);
+            Log.d("peoni right", String.valueOf(leftPLayer.getPoints()));
+            rightPoints.setText(String.valueOf(rightPlayer.getPoints()));
+        }
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -65,15 +73,17 @@ public class PointsFragment extends Fragment {
     private void initPoints(){
         leftPoints = view.findViewById(R.id.player_1_points);
         leftPoints.setText(String.valueOf(leftPLayer.getPoints()));
-
-        TextView rightPoints = view.findViewById(R.id.player_2_points);
-        rightPoints.setText("");
-        TextView rightPlay = view.findViewById(R.id.player_2);
-        rightPlay.setText("");
+        rightPoints = view.findViewById(R.id.player_2_points);
+        rightPoints.setText(String.valueOf(rightPlayer.getPoints()));
+        leftUser = view.findViewById(R.id.player_1);
+        leftUser.setText(leftPLayer.getUsername());
+        rightUser = view.findViewById(R.id.player_2);
+        rightUser.setText(rightPlayer.getUsername());
     }
 
     private void initPLayers(){
-        leftPLayer = new PlayerInfo("id", "user", 0);
+        leftPLayer = gameInfo.getPlayer1();
+        rightPlayer = gameInfo.getPlayer2();
     }
 
 
@@ -81,7 +91,7 @@ public class PointsFragment extends Fragment {
         timerCallBack = callBack;
     }
 
-    public void startTimer(int duration) {
+    public void startTimer(long duration) {
         long miDur = duration * 60 * 1000;
         new CountDownTimer(miDur,1000){
 
@@ -95,7 +105,6 @@ public class PointsFragment extends Fragment {
                     timeLeft.setText(String.valueOf(left));
                 }
             }
-
             @Override
             public void onFinish() {
                 if (timerCallBack != null) {

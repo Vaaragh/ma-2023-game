@@ -21,9 +21,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import game.slagalica.R;
+import game.slagalica.SocketHandler;
+import io.socket.client.Socket;
 
 public class AssociationFragment extends Fragment {
 
+    private Socket socket;
     private View view;
     private List<String> column1;
     private List<String> column2;
@@ -72,6 +75,7 @@ public class AssociationFragment extends Fragment {
         fetchMapData();
         initTextViewListeners();
         initSubmitBtn();
+        socket = SocketHandler.getInstance().getSocket();
 
         return view;
     }
